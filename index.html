@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 웹 서비스</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>환영합니다!</h1>
+        <nav>
+            <a href="#" id="login-link">로그인</a>
+            <a href="#" id="signup-link">회원가입</a>
+            <a href="#" id="logout-link" style="display:none;">로그아웃</a>
+            <span id="welcome-message" style="display:none;"></span>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 로그인 섹션: 사용자가 로그인할 수 있는 폼을 제공합니다. -->
+        <section id="login-section" class="hidden">
+            <h2>로그인</h2>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="사용자 이름" required>
+                <input type="password" id="login-password" placeholder="비밀번호" required>
+                <button type="submit">로그인</button>
+            </form>
+        </section>
+
+        <!-- 회원가입 섹션: 새로운 사용자가 계정을 생성할 수 있는 폼을 제공합니다. -->
+        <section id="signup-section" class="hidden">
+            <h2>회원가입</h2>
+            <form id="signup-form">
+                <input type="text" id="signup-username" placeholder="사용자 이름" required>
+                <input type="password" id="signup-password" placeholder="비밀번호" required>
+                <button type="submit">회원가입</button>
+            </form>
+        </section>
+
+        <!-- 게시판 섹션: 모든 게시글 목록을 표시하고, 새 글 작성 버튼을 제공합니다. -->
+        <section id="board-section">
+            <h2>게시판</h2>
+            <button id="new-post-btn">새 글 작성</button>
+            <div id="post-list">
+                <!-- 게시글 목록이 여기에 JavaScript로 동적으로 추가됩니다 -->
+            </div>
+        </section>
+
+        <!-- 게시글 상세 섹션: 특정 게시글의 제목, 내용, 작성자, 댓글 목록을 표시합니다. -->
+        <section id="post-detail-section" class="hidden">
+            <h2 id="post-detail-title"></h2>
+            <p id="post-detail-content"></p>
+            <p><small>작성자: <span id="post-detail-author"></span></small></p>
+            <button id="edit-post-btn" class="hidden">수정</button>
+            <button id="delete-post-btn" class="hidden">삭제</button>
+            <hr>
+            <h3>댓글</h3>
+            <div id="comment-list">
+                <!-- 댓글 목록이 여기에 JavaScript로 동적으로 추가됩니다 -->
+            </div>
+            <!-- 댓글 작성 폼: 로그인한 사용자만 댓글을 작성할 수 있습니다. -->
+            <form id="comment-form" class="hidden">
+                <textarea id="comment-content" placeholder="댓글을 작성하세요" required></textarea>
+                <button type="submit">댓글 작성</button>
+            </form>
+            <button id="back-to-list-btn">목록으로</button>
+        </section>
+
+        <!-- 새 글 작성 섹션: 사용자가 새로운 게시글을 작성할 수 있는 폼을 제공합니다. -->
+        <section id="post-form-section" class="hidden">
+            <h2>새 글 작성</h2>
+            <form id="post-form">
+                <input type="text" id="post-title" placeholder="제목" required>
+                <textarea id="post-content" placeholder="내용" required></textarea>
+                <button type="submit">작성</button>
+                <button type="button" id="cancel-post-btn">취소</button>
+            </form>
+        </section>
+
+        <!-- 게시글 수정 섹션: 기존 게시글을 수정할 수 있는 폼을 제공합니다. -->
+        <section id="edit-post-section" class="hidden">
+            <h2>게시글 수정</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-post-id">
+                <input type="text" id="edit-post-title" placeholder="제목" required>
+                <textarea id="edit-post-content" placeholder="내용" required></textarea>
+                <button type="submit">수정 완료</button>
+                <button type="button" id="cancel-edit-btn">취소</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 커뮤니티 웹 서비스</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

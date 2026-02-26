@@ -1,0 +1,132 @@
+/* 기본 바디 스타일: 폰트, 배경색, 기본 텍스트 색상 설정 및 마진/패딩 제거 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* 헤더 스타일: 배경색, 텍스트 색상, 패딩, 가운데 정렬 및 네비게이션과의 공간 분배 */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* 헤더 제목 스타일: 제목의 기본 마진 제거 */
+header h1 {
+    margin: 0;
+}
+
+/* 헤더 네비게이션 링크 스타일: 텍스트 색상, 밑줄 제거 및 왼쪽 마진 설정 */
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* 메인 콘텐츠 영역 스타일: 내부 패딩, 최대 너비, 중앙 정렬, 배경색 및 그림자 효과 */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 각 섹션의 하단 마진 설정 */
+section {
+    margin-bottom: 20px;
+}
+
+/* 숨겨진 요소 스타일: display 속성을 none으로 설정하여 요소를 숨깁니다. */
+.hidden {
+    display: none;
+}
+
+/* 폼 스타일: 세로 방향으로 요소들을 정렬하고 간격을 둡니다. */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* 폼 입력 필드 및 텍스트 영역 스타일: 패딩, 테두리, 모서리 둥글게 처리 */
+form input[type="text"],
+form input[type="password"],
+form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 폼 버튼 스타일: 패딩, 배경색, 텍스트 색상, 테두리 제거, 모서리 둥글게 처리, 커서 변경 */
+form button {
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 폼 버튼 호버 스타일: 마우스 오버 시 배경색 변경 */
+form button:hover {
+    background-color: #4cae4c;
+}
+
+/* 게시글 목록의 각 게시글 스타일: 배경색, 테두리, 패딩, 하단 마진, 모서리 둥글게 처리 */
+#post-list div {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* 게시글 목록의 제목 스타일: 상단/하단 마진 제거, 색상 변경, 클릭 가능한 커서 */
+#post-list div h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #337ab7;
+    cursor: pointer;
+}
+
+/* 게시글 목록의 내용 스타일: 마진 제거, 폰트 크기, 텍스트 색상 */
+#post-list div p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 댓글 목록의 각 댓글 스타일: 배경색, 테두리, 패딩, 하단 마진, 모서리 둥글게 처리 */
+#comment-list div {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+/* 댓글 목록의 내용 스타일: 마진 제거 */
+#comment-list div p {
+    margin: 0;
+}
+
+/* 푸터 스타일: 텍스트 중앙 정렬, 패딩, 배경색, 텍스트 색상, 하단 고정 */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
