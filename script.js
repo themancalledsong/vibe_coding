@@ -25,9 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentForm = document.getElementById('comment-form');
 
     // 애플리케이션 상태 변수
-    let loggedInUser = null; // 현재 로그인한 사용자 정보
+    // 현재 로그인한 사용자 정보
+    // 새로고침 시에도 유지되도록 로컬 스토리지에 저장
+    let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
     // 로컬 스토리지에서 게시글 목록을 불러오거나, 없으면 빈 배열로 초기화합니다.
     let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    // 오래된 데이터에는 comments 속성이 없을 수 있으므로 초기화
+    posts.forEach(p => { if (!p.comments) p.comments = []; });
     // 로컬 스토리지에서 사용자 목록을 불러오거나, 없으면 빈 배열로 초기화합니다.
     let users = JSON.parse(localStorage.getItem('users')) || [];
     let currentPostId = null; // 현재 보고 있는 게시글의 ID
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = users.find(user => user.username === username && user.password === password);
         if (user) {
             loggedInUser = user; // 로그인한 사용자 정보 저장
+            localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser)); // 상태 유지
             alert(`${username}님 환영합니다!`);
             updateNav(); // 네비게이션 업데이트
             showSection(boardSection); // 게시판 섹션 보여주기
@@ -101,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 사용자 로그아웃 함수
     function logoutUser() {
         loggedInUser = null; // 로그인 정보 초기화
+        localStorage.removeItem('loggedInUser'); // 로컬 스토리지에서 삭제
         alert('로그아웃 되었습니다.');
         updateNav(); // 네비게이션 업데이트
         showSection(boardSection); // 게시판 섹션 보여주기
@@ -120,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 data-id="${post.id}">${post.title}</h3>
                 <p>${post.content.substring(0, 100)}...</p>
                 <p><small>작성자: ${post.author} | ${new Date(post.timestamp).toLocaleString()}</small></p>
+                <p><small>댓글 ${post.comments.length}개</small></p>
             `;
             postList.appendChild(postElement);
         });

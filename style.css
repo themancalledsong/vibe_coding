@@ -1,22 +1,33 @@
-/* 기본 바디 스타일: 폰트, 배경색, 기본 텍스트 색상 설정 및 마진/패딩 제거 */
+/* 기본 바디 스타일: 전체 세로 레이아웃을 위해 flex를 사용하고 흑백 배경 적용 */
+:root {
+    --bg: #ffffff;
+    --primary: #000000;
+    --secondary: #666666;
+    --accent: #f2f2f2;
+    --text-dark: #000000;
+    --text-light: #ffffff;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--bg);
+    color: var(--text-dark);
 }
 
 /* 헤더 스타일: 배경색, 텍스트 색상, 패딩, 가운데 정렬 및 네비게이션과의 공간 분배 */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 1rem 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* 헤더 제목 스타일: 제목의 기본 마진 제거 */
@@ -24,20 +35,40 @@ header h1 {
     margin: 0;
 }
 
-/* 헤더 네비게이션 링크 스타일: 텍스트 색상, 밑줄 제거 및 왼쪽 마진 설정 */
+/* 헤더 네비게이션 링크 스타일: 흑백 버튼 느낌 */
 header nav a {
-    color: #fff;
+    color: var(--text-light);
     text-decoration: none;
     margin-left: 15px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+header nav a:hover {
+    background-color: rgba(0,0,0,0.2);
 }
 
 /* 메인 콘텐츠 영역 스타일: 내부 패딩, 최대 너비, 중앙 정렬, 배경색 및 그림자 효과 */
 main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1; /* header와 footer 사이에서 최대 영역 차지 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+/* 메인 내부 컨텐츠 카드 스타일 */
+main .content {
+    width: 100%;
+    max-width: 900px;
+    background-color: var(--accent);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-height: 60vh;
 }
 
 /* 각 섹션의 하단 마진 설정 */
@@ -63,39 +94,51 @@ form input[type="text"],
 form input[type="password"],
 form textarea {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    background-color: var(--bg);
 }
 
 /* 폼 버튼 스타일: 패딩, 배경색, 텍스트 색상, 테두리 제거, 모서리 둥글게 처리, 커서 변경 */
 form button {
-    padding: 10px 15px;
-    background-color: #5cb85c;
-    color: white;
+    padding: 12px 18px;
+    background-color: var(--secondary);
+    color: var(--text-dark);
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
+}
+
+form button:hover {
+    background-color: var(--primary);
+    color: var(--text-light);
 }
 
 /* 폼 버튼 호버 스타일: 마우스 오버 시 배경색 변경 */
 form button:hover {
-    background-color: #4cae4c;
+    background-color: #444444;
 }
 
-/* 게시글 목록의 각 게시글 스타일: 배경색, 테두리, 패딩, 하단 마진, 모서리 둥글게 처리 */
+/* 게시글 목록의 각 게시글 스타일: 단색 카드 느낌 */
 #post-list div {
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    background-color: var(--bg);
+    border: 1px solid var(--primary);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+#post-list div:hover {
+    transform: translateY(-2px);
 }
 
 /* 게시글 목록의 제목 스타일: 상단/하단 마진 제거, 색상 변경, 클릭 가능한 커서 */
 #post-list div h3 {
     margin-top: 0;
     margin-bottom: 5px;
-    color: #337ab7;
+    color: var(--primary);
     cursor: pointer;
 }
 
@@ -106,13 +149,13 @@ form button:hover {
     color: #666;
 }
 
-/* 댓글 목록의 각 댓글 스타일: 배경색, 테두리, 패딩, 하단 마진, 모서리 둥글게 처리 */
+/* 댓글 목록의 각 댓글 스타일: 단색 카드 */
 #comment-list div {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 8px;
-    margin-bottom: 5px;
-    border-radius: 3px;
+    background-color: var(--bg);
+    border: 1px solid var(--secondary);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
 }
 
 /* 댓글 목록의 내용 스타일: 마진 제거 */
@@ -124,9 +167,7 @@ form button:hover {
 footer {
     text-align: center;
     padding: 1rem 0;
-    background-color: #333;
-    color: #fff;
-    position: relative;
-    bottom: 0;
+    background-color: var(--secondary);
+    color: var(--text-dark);
     width: 100%;
 }
